@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivé</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #1a1a1a; }
+    h1 { font-size: 22px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+    nav { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    input, select, button { padding: 6px 10px; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #1a1a1a; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #333; }
+    button.secondary { background: none; color: #1a1a1a; border: 1px solid #ccc; }
+    button.secondary:hover { background: #f0f0f0; }
+    #user-info { margin-left: auto; font-size: 13px; color: #666; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { text-align: left; padding: 8px 10px; border-bottom: 2px solid #e0e0e0; font-size: 12px; text-transform: uppercase; color: #888; }
+    td { padding: 10px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+    tr:hover td { background: #fafafa; }
+    .price { font-weight: 700; }
+    .msg { padding: 20px; text-align: center; color: #888; }
+    dialog { border: 1px solid #ccc; border-radius: 6px; padding: 24px; width: 320px; }
+    dialog h2 { margin-bottom: 16px; font-size: 16px; }
+    dialog label { display: block; font-size: 12px; margin-bottom: 2px; color: #666; }
+    dialog input { width: 100%; margin-bottom: 10px; box-sizing: border-box; }
+    dialog .actions { display: flex; gap: 8px; margin-top: 4px; }
+    ::backdrop { background: rgba(0,0,0,.4); }
+  </style>
+</head>
+<body>
+
+<h1>Archivé</h1>
+
+<nav>
+  <input type="text" id="q" placeholder="Buscar nome ou marca…" style="width:200px" />
+  <input type="text" id="q-cat" placeholder="Categoria" style="width:120px" />
+  <input type="number" id="q-min" placeholder="Preço mín" style="width:90px" />
+  <input type="number" id="q-max" placeholder="Preço máx" style="width:90px" />
+  <button onclick="search()">Buscar</button>
+  <span id="user-info"></span>
+  <button class="secondary" id="auth-btn" onclick="openLogin()">Entrar</button>
+</nav>
+
+<div id="result"><p class="msg">Carregando…</p></div>
+
+<div id="pagination" style="margin-top:16px;display:flex;gap:8px;align-items:center;font-size:13px;color:#666"></div>
+
+<!-- Login dialog -->
+<dialog id="login-dialog">
+  <h2>Entrar</h2>
+  <label>E-mail</label><input type="email" id="l-email" />
+  <label>Senha</label><input type="password" id="l-password" />
+  <div class="actions">
+    <button onclick="doLogin()">Entrar</button>
+    <button class="secondary" onclick="document.getElementById('login-dialog').close()">Cancelar</button>
+  </div>
+  <p style="font-size:12px;margin-top:12px;color:#666">
+    Sem conta? <a href="#" onclick="openRegister()">Cadastrar</a>
+  </p>
+</dialog>
+
+<!-- Register dialog -->
+<dialog id="register-dialog">
+  <h2>Cadastrar</h2>
+  <label>Nome</label><input type="text" id="r-name" />
+  <label>E-mail</label><input type="email" id="r-email" />
+  <label>Senha</label><input type="password" id="r-password" />
+  <div class="actions">
+    <button onclick="doRegister()">Criar conta</button>
+    <button class="secondary" onclick="document.getElementById('register-dialog').close()">Cancelar</button>
+  </div>
+</dialog>
+
+<script>
+  let user = null;
+  let page = 1;
+
+  async function api(method, path, body) {
+    const res = await fetch(path, {
+      method,
+      credentials: 'include',
+      headers: body ? { 'Content-Type': 'application/json' } : {},
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    return res;
+  }
+
+  function fmt(price, currency = 'BRL') {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency }).format(price);
+  }
+
+  async function search(p = 1) {
+    page = p;
+    const params = new URLSearchParams({ page, pageSize: 20 });
+    const q = document.getElementById('q').value.trim();
+    const cat = document.getElementById('q-cat').value.trim();
+    const min = document.getElementById('q-min').value;
+    const max = document.getElementById('q-max').value;
+    if (q) params.set('query', q);
+    if (cat) params.set('category', cat);
+    if (min) params.set('minPrice', min);
+    if (max) params.set('maxPrice', max);
+
+    document.getElementById('result').innerHTML = '<p class="msg">Carregando…</p>';
+    const res = await api('GET', `/api/items?${params}`);
+    if (!res.ok) { document.getElementById('result').innerHTML = '<p class="msg">Erro ao carregar.</p>'; return; }
+    const data = await res.json();
+    renderItems(data.items);
+    renderPagination(data.total, data.page, data.pageSize);
+  }
+
+  function renderItems(items) {
+    if (!items.length) {
+      document.getElementById('result').innerHTML = '<p class="msg">Nenhum item encontrado.</p>';
+      return;
+    }
+    document.getElementById('result').innerHTML = `
+      <table>
+        <thead><tr><th>Nome</th><th>Marca</th><th>Categoria</th><th>Preço</th></tr></thead>
+        <tbody>${items.map(i => `
+          <tr>
+            <td>${i.productUrl ? `<a href="${i.productUrl}" target="_blank">${i.name}</a>` : i.name}</td>
+            <td>${i.brand}</td>
+            <td>${i.category || '—'}</td>
+            <td class="price">${fmt(i.currentPrice, i.currency)}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  function renderPagination(total, p, pageSize) {
+    const pages = Math.ceil(total / pageSize);
+    const el = document.getElementById('pagination');
+    if (pages <= 1) { el.innerHTML = ''; return; }
+    el.innerHTML = `
+      <button class="secondary" onclick="search(${p - 1})" ${p <= 1 ? 'disabled' : ''}>← Anterior</button>
+      <span>Página ${p} / ${pages}</span>
+      <button class="secondary" onclick="search(${p + 1})" ${p >= pages ? 'disabled' : ''}>Próxima →</button>`;
+  }
+
+  function openLogin() { document.getElementById('login-dialog').showModal(); }
+  function openRegister() {
+    document.getElementById('login-dialog').close();
+    document.getElementById('register-dialog').showModal();
+  }
+
+  async function doLogin() {
+    const email = document.getElementById('l-email').value;
+    const password = document.getElementById('l-password').value;
+    const res = await api('POST', '/api/auth/login', { email, password });
+    if (res.ok) {
+      user = await res.json();
+      document.getElementById('login-dialog').close();
+      updateAuthUI();
+    } else {
+      alert('Credenciais inválidas.');
+    }
+  }
+
+  async function doRegister() {
+    const name = document.getElementById('r-name').value;
+    const email = document.getElementById('r-email').value;
+    const password = document.getElementById('r-password').value;
+    const res = await api('POST', '/api/auth/register', { name, email, password });
+    if (res.ok) {
+      user = await res.json();
+      document.getElementById('register-dialog').close();
+      updateAuthUI();
+    } else {
+      alert('Erro ao criar conta.');
+    }
+  }
+
+  async function doLogout() {
+    await api('POST', '/api/auth/logout');
+    user = null;
+    updateAuthUI();
+  }
+
+  function updateAuthUI() {
+    const info = document.getElementById('user-info');
+    const btn = document.getElementById('auth-btn');
+    if (user) {
+      info.textContent = `Olá, ${user.name.split(' ')[0]}`;
+      btn.textContent = 'Sair';
+      btn.onclick = doLogout;
+    } else {
+      info.textContent = '';
+      btn.textContent = 'Entrar';
+      btn.onclick = openLogin;
+    }
+  }
+
+  document.getElementById('q').addEventListener('keydown', e => { if (e.key === 'Enter') search(); });
+
+  (async () => {
+    const res = await api('GET', '/api/auth/me');
+    if (res.ok) { user = await res.json(); updateAuthUI(); }
+    search();
+  })();
+</script>
+</body>
+</html>

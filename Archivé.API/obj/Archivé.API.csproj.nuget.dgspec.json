@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kafka/HATE/materias/5sem/eng/price-tracker/Archivé.API/Archivé.API.csproj": {}
+    "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj": {}
   },
   "projects": {
-    "/home/kafka/HATE/materias/5sem/eng/price-tracker/Archivé.API/Archivé.API.csproj": {
+    "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kafka/HATE/materias/5sem/eng/price-tracker/Archivé.API/Archivé.API.csproj",
+        "projectUniqueName": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj",
         "projectName": "Archive.API",
-        "projectPath": "/home/kafka/HATE/materias/5sem/eng/price-tracker/Archivé.API/Archivé.API.csproj",
+        "projectPath": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj",
         "packagesPath": "/home/kafka/.nuget/packages/",
-        "outputPath": "/home/kafka/HATE/materias/5sem/eng/price-tracker/Archivé.API/obj/",
+        "outputPath": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kafka/.nuget/NuGet/NuGet.Config"

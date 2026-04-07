@@ -9,5 +9,4 @@ public class User
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public ICollection<WishlistEntry> WishlistEntries { get; set; } = [];
-    public ICollection<TrackedItem> TrackedItems { get; set; } = [];
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "54b252c2-5573-42ca-8bb4-f665961135c6",
+    "Name": "Teste User",
+    "Email": "teste@example.com",
+    "PasswordHash": "$2a$11$4vF2IVt0Gxf.JoQtnAfiHeESWk2SIKTR/inGgVXm3415rpIL1fH1O",
+    "CreatedAt": "2026-04-06T23:48:38.9816644Z",
+    "WishlistEntries": [],
+    "TrackedItems": []
+  },
+  {
+    "Id": "cb747e49-fa17-4527-bb3e-8fa8aa21ddcd",
+    "Name": "kafka",
+    "Email": "ponta@direita.com",
+    "PasswordHash": "$2a$11$dfyxP18xeKt4QfLD7Yg5i.cVcQ7RWm85noxofOMPbbEhUf0WNcv7i",
+    "CreatedAt": "2026-04-06T23:54:06.1569005Z",
+    "WishlistEntries": [
+      {
+        "Id": "11e76711-a5d9-4b65-a72f-40f86a614610",
+        "UserId": "cb747e49-fa17-4527-bb3e-8fa8aa21ddcd",
+        "FashionItemId": "33333333-3333-3333-3333-333333333333",
+        "AddedAt": "2026-04-07T00:02:32.8541846Z",
+        "Note": null,
+        "User": null,
+        "FashionItem": null
+      }
+    ],
+    "TrackedItems": []
+  }
+]

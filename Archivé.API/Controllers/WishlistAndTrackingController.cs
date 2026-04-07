@@ -45,7 +45,6 @@ public class WishlistController(JsonCatalogStore catalogStore, JsonUserStore use
     /// <summary>Adiciona um item à wishlist.</summary>
     [HttpPost]
     [ProducesResponseType(typeof(WishlistEntryResponse), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Add([FromBody] AddToWishlistRequest req)
     {

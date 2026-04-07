@@ -74,3 +74,4 @@
 /home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/obj/Debug/net8.0/Archive.API.pdb
 /home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/obj/Debug/net8.0/Archivé.API.genruntimeconfig.cache
 /home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/obj/Debug/net8.0/ref/Archive.API.dll
+/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/bin/Debug/net8.0/Archive.API.staticwebassets.runtime.json

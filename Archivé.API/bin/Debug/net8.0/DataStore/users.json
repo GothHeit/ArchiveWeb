@@ -5,8 +5,7 @@
     "Email": "teste@example.com",
     "PasswordHash": "$2a$11$4vF2IVt0Gxf.JoQtnAfiHeESWk2SIKTR/inGgVXm3415rpIL1fH1O",
     "CreatedAt": "2026-04-06T23:48:38.9816644Z",
-    "WishlistEntries": [],
-    "TrackedItems": []
+    "WishlistEntries": []
   },
   {
     "Id": "cb747e49-fa17-4527-bb3e-8fa8aa21ddcd",
@@ -24,7 +23,22 @@
         "User": null,
         "FashionItem": null
       }
-    ],
-    "TrackedItems": []
+    ]
+  },
+  {
+    "Id": "60b106b8-57c8-4c56-a001-3879b11933ca",
+    "Name": "Teste2",
+    "Email": "novo2@teste.com",
+    "PasswordHash": "$2a$11$ewB4M8A5rEcY7bvlHpI0jeRLEFfKvzAfNUS5Ea4qGXWVoSQL46HBS",
+    "CreatedAt": "2026-04-22T20:14:41.934465Z",
+    "WishlistEntries": []
+  },
+  {
+    "Id": "d7522320-0dc5-4c97-af62-9dfb5975598f",
+    "Name": "pikachu",
+    "Email": "pokemon@gmail.com",
+    "PasswordHash": "$2a$11$nBl8F42tndUmI1g2woPaSuXIpHwGO8qZKwjOPTw5xIh2Ohmsiegla",
+    "CreatedAt": "2026-04-22T20:16:30.8100091Z",
+    "WishlistEntries": []
   }
 ]

@@ -40,5 +40,13 @@
     "PasswordHash": "$2a$11$nBl8F42tndUmI1g2woPaSuXIpHwGO8qZKwjOPTw5xIh2Ohmsiegla",
     "CreatedAt": "2026-04-22T20:16:30.8100091Z",
     "WishlistEntries": []
+  },
+  {
+    "Id": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
+    "Name": "gwen",
+    "Email": "gwen@gmail.com",
+    "PasswordHash": "$2a$11$icmhjTteZE1D4vtT0kN/8Odf/HRGb0hTkD29NlYS93LRQ8IBxhVL.",
+    "CreatedAt": "2026-04-22T23:03:05.7965652Z",
+    "WishlistEntries": []
   }
 ]

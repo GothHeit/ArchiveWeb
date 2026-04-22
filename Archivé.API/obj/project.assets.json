@@ -1989,19 +1989,19 @@
     ]
   },
   "packageFolders": {
-    "/home/kafka/.nuget/packages/": {}
+    "/home/cabeto/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj",
+      "projectUniqueName": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/Archivé.API.csproj",
       "projectName": "Archive.API",
-      "projectPath": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/Archivé.API.csproj",
-      "packagesPath": "/home/kafka/.nuget/packages/",
-      "outputPath": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/obj/",
+      "projectPath": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/Archivé.API.csproj",
+      "packagesPath": "/home/cabeto/.nuget/packages/",
+      "outputPath": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/kafka/.nuget/NuGet/NuGet.Config"
+        "/home/cabeto/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2066,7 +2066,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/cabeto/.dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

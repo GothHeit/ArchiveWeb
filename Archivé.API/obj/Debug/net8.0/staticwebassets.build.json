@@ -1,39 +1,11 @@
 {
   "Version": 1,
-  "Hash": "v1yJupNp6KYxctoeTHZsvlAwhKjpg953DEo2lra0Ouk=",
+  "Hash": "F1RDVv9bYBi1lFEQOawwrlxVHdAH+3+kR0kHPKSHvXo=",
   "Source": "Archive.API",
   "BasePath": "_content/Archive.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "Archive.API/wwwroot",
-      "Source": "Archive.API",
-      "ContentRoot": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/wwwroot/",
-      "BasePath": "_content/Archive.API",
-      "Pattern": "**"
-    }
-  ],
-  "Assets": [
-    {
-      "Identity": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/wwwroot/index.html",
-      "SourceId": "Archive.API",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/kafka/HATE/materias/5sem/eng/ArchiveCLO/Archivé.API/wwwroot/",
-      "BasePath": "_content/Archive.API",
-      "RelativePath": "index.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/index.html"
-    }
-  ]
+  "DiscoveryPatterns": [],
+  "Assets": []
 }

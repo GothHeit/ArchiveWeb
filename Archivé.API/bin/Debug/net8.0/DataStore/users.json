@@ -47,6 +47,16 @@
     "Email": "gwen@gmail.com",
     "PasswordHash": "$2a$11$icmhjTteZE1D4vtT0kN/8Odf/HRGb0hTkD29NlYS93LRQ8IBxhVL.",
     "CreatedAt": "2026-04-22T23:03:05.7965652Z",
-    "WishlistEntries": []
+    "WishlistEntries": [
+      {
+        "Id": "eb886c82-f2ee-4fda-95fb-893d2e5c418e",
+        "UserId": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
+        "FashionItemId": "11111111-1111-1111-1111-111111111111",
+        "AddedAt": "2026-04-22T23:19:36.2171242Z",
+        "Note": null,
+        "User": null,
+        "FashionItem": null
+      }
+    ]
   }
 ]

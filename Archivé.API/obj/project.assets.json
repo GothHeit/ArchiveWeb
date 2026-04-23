@@ -1994,11 +1994,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/Archivé.API.csproj",
+      "projectUniqueName": "/home/cabeto/engenharia_softwareI/ArchiveWeb/Archivé.API/Archivé.API.csproj",
       "projectName": "Archive.API",
-      "projectPath": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/Archivé.API.csproj",
+      "projectPath": "/home/cabeto/engenharia_softwareI/ArchiveWeb/Archivé.API/Archivé.API.csproj",
       "packagesPath": "/home/cabeto/.nuget/packages/",
-      "outputPath": "/home/cabeto/engenharia_softwareI/ArchiveCLO/Archivé.API/obj/",
+      "outputPath": "/home/cabeto/engenharia_softwareI/ArchiveWeb/Archivé.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/cabeto/.nuget/NuGet/NuGet.Config"

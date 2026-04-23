@@ -1,4 +1,5 @@
 using Archive.API.DTOs;
+using Archive.API.Exceptions;
 using Archive.API.Models;
 using Archive.API.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -23,7 +24,7 @@ public class AuthController(JsonUserStore userStore) : ControllerBase
     public async Task<IActionResult> Register([FromBody] RegisterRequest req)
     {
         if (await _userStore.EmailExistsAsync(req.Email))
-            return Conflict(new { error = "E-mail já cadastrado." });
+            throw new BusinessException("E-mail já cadastrado.", StatusCodes.Status409Conflict);
 
         var user = new User
         {

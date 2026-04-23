@@ -1,0 +1,14 @@
+# .NET build artifacts
+**/bin/
+**/obj/
+
+# Node modules and Vite cache
+archive-web/node_modules/
+archive-web/.vite/
+
+# Local environment and data files
+Archivé.API/DataStore/*.json
+
+# Editor files
+.vscode/
+*.log

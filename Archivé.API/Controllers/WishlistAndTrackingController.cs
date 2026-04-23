@@ -1,4 +1,5 @@
 using Archive.API.DTOs;
+using Archive.API.Exceptions;
 using Archive.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,7 +53,7 @@ public class WishlistController(JsonCatalogStore catalogStore, JsonUserStore use
         if (item is null) return NotFound(new { error = "Item não encontrado." });
 
         if (await userStore.WishlistExistsAsync(UserId, req.FashionItemId))
-            return Conflict(new { error = "Item já está na wishlist." });
+            throw new BusinessException("Item já está na wishlist.", StatusCodes.Status409Conflict);
 
         var entry = await userStore.AddWishlistAsync(UserId, req.FashionItemId, req.Note);
         if (entry is null) return Unauthorized();

@@ -1,5 +1,7 @@
+using Archive.API.Exceptions;
 using Archive.API.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +72,28 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.ContentType = "application/json";
+
+        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
+        var exception = errorFeature?.Error;
+
+        if (exception is BusinessException businessException)
+        {
+            context.Response.StatusCode = businessException.StatusCode;
+            await context.Response.WriteAsJsonAsync(new { error = businessException.Message });
+            return;
+        }
+
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        await context.Response.WriteAsJsonAsync(new { error = "Ocorreu um erro interno no servidor." });
+    });
+});
+
 app.UseStaticFiles();
 app.UseCors("Frontend");
 app.UseAuthentication();

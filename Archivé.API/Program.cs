@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ── JSON stores ───────────────────────────────────────────────────────────────
 builder.Services.AddSingleton<JsonUserStore>();
-builder.Services.AddSingleton<JsonCatalogStore>();
+builder.Services.AddSingleton<JsonCatalogStore>(); // instãncias unicas 
 
 // ── Authentication ────────────────────────────────────────────────────────────
 builder.Services
@@ -15,13 +15,13 @@ builder.Services
     .AddCookie(options =>
     {
         options.Cookie.Name = "archive.session";
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SameSite = SameSiteMode.Strict;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.ExpireTimeSpan = TimeSpan.FromDays(30);
-        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true; // impede acesso via JavaScript
+        options.Cookie.SameSite = SameSiteMode.Strict; // protege o cookie
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // garante https
+        options.ExpireTimeSpan = TimeSpan.FromDays(30); // sessão dura 30 dias
+        options.SlidingExpiration = true; // renova a expiração a cada acesso
 
-        // Retorna 401 ao invés de redirecionar (API REST)
+        // Retorna 401 ao invés de redirecionar (prática da API REST)
         options.Events.OnRedirectToLogin = ctx =>
         {
             ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
@@ -92,12 +92,13 @@ app.UseExceptionHandler(errorApp =>
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await context.Response.WriteAsJsonAsync(new { error = "Ocorreu um erro interno no servidor." });
     });
-});
+}); // para tratamento de exceções, garantindo respostas JSON, mesmo em erros de negócio
 
-app.UseStaticFiles();
-app.UseCors("Frontend");
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
+app.UseStaticFiles(); // serve arquivos estáticos para o front se necessário
+app.UseCors("Frontend"); // habilita CORS para a política do front, permitindo que acesse a api e envie cookies
+app.UseAuthentication(); // habilita autenticação para usar cookies e proteger as rotas
+app.UseAuthorization(); // habilita autorização para proteger rotas com [Authorize]
+app.MapControllers(); // mapeia os controllers para as rotas da API
+
 
 app.Run();

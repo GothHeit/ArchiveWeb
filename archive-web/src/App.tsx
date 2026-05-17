@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import WishlistPage from './pages/WishlistPage'
+import FavoriteBrandsPage from './pages/FavoriteBrandsPage'
 import ItemDetailPage from './pages/ItemDetailPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -34,6 +35,14 @@ export default function App() {
                   element={
                     <ProtectedRoute>
                       <WishlistPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/marcas"
+                  element={
+                    <ProtectedRoute>
+                      <FavoriteBrandsPage />
                     </ProtectedRoute>
                   }
                 />

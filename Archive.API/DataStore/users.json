@@ -5,7 +5,8 @@
     "Email": "teste@example.com",
     "PasswordHash": "$2a$11$4vF2IVt0Gxf.JoQtnAfiHeESWk2SIKTR/inGgVXm3415rpIL1fH1O",
     "CreatedAt": "2026-04-06T23:48:38.9816644Z",
-    "WishlistEntries": []
+    "WishlistEntries": [],
+    "FavoriteBrands": []
   },
   {
     "Id": "cb747e49-fa17-4527-bb3e-8fa8aa21ddcd",
@@ -19,11 +20,10 @@
         "UserId": "cb747e49-fa17-4527-bb3e-8fa8aa21ddcd",
         "FashionItemId": "33333333-3333-3333-3333-333333333333",
         "AddedAt": "2026-04-07T00:02:32.8541846Z",
-        "Note": null,
-        "User": null,
-        "FashionItem": null
+        "Note": null
       }
-    ]
+    ],
+    "FavoriteBrands": []
   },
   {
     "Id": "60b106b8-57c8-4c56-a001-3879b11933ca",
@@ -31,7 +31,8 @@
     "Email": "novo2@teste.com",
     "PasswordHash": "$2a$11$ewB4M8A5rEcY7bvlHpI0jeRLEFfKvzAfNUS5Ea4qGXWVoSQL46HBS",
     "CreatedAt": "2026-04-22T20:14:41.934465Z",
-    "WishlistEntries": []
+    "WishlistEntries": [],
+    "FavoriteBrands": []
   },
   {
     "Id": "d7522320-0dc5-4c97-af62-9dfb5975598f",
@@ -39,7 +40,8 @@
     "Email": "pokemon@gmail.com",
     "PasswordHash": "$2a$11$nBl8F42tndUmI1g2woPaSuXIpHwGO8qZKwjOPTw5xIh2Ohmsiegla",
     "CreatedAt": "2026-04-22T20:16:30.8100091Z",
-    "WishlistEntries": []
+    "WishlistEntries": [],
+    "FavoriteBrands": []
   },
   {
     "Id": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
@@ -53,10 +55,11 @@
         "UserId": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
         "FashionItemId": "11111111-1111-1111-1111-111111111111",
         "AddedAt": "2026-05-06T23:49:30.624262Z",
-        "Note": null,
-        "User": null,
-        "FashionItem": null
+        "Note": null
       }
+    ],
+    "FavoriteBrands": [
+      "SANDRO"
     ]
   },
   {
@@ -65,7 +68,8 @@
     "Email": "abecelino@a",
     "PasswordHash": "$2a$11$KWf7fm9HqxXbl00GVxAF9.9PXzPePUzC1XJ2o3Mz.hi46RQCSvrFq",
     "CreatedAt": "2026-05-06T21:57:02.4354272Z",
-    "WishlistEntries": []
+    "WishlistEntries": [],
+    "FavoriteBrands": []
   },
   {
     "Id": "7b5654bf-2015-45b7-8ddd-d45432a61efb",
@@ -79,10 +83,13 @@
         "UserId": "7b5654bf-2015-45b7-8ddd-d45432a61efb",
         "FashionItemId": "11111111-1111-1111-1111-111111111111",
         "AddedAt": "2026-05-11T17:22:38.3011574Z",
-        "Note": null,
-        "User": null,
-        "FashionItem": null
+        "Note": null
       }
+    ],
+    "FavoriteBrands": [
+      "Moncler",
+      "Onitsuka Tiger",
+      "Alden"
     ]
   }
 ]

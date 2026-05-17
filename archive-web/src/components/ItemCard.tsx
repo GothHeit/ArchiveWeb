@@ -6,9 +6,11 @@ interface Props {
   item: FashionItemResponse
   inWishlist?: boolean
   onToggleWishlist?: (item: FashionItemResponse) => void
+  isBrandFavorite?: boolean
+  onToggleBrandFavorite?: (brand: string) => void
 }
 
-export default function ItemCard({ item, inWishlist, onToggleWishlist }: Props) {
+export default function ItemCard({ item, inWishlist, onToggleWishlist, isBrandFavorite, onToggleBrandFavorite }: Props) {
   const { user } = useAuth()
 
   const price = new Intl.NumberFormat('pt-BR', {
@@ -34,7 +36,25 @@ export default function ItemCard({ item, inWishlist, onToggleWishlist }: Props) 
         </div>
 
         <div className="p-4">
-          <p className="text-xs tracking-widest text-muted uppercase mb-1">{item.brand}</p>
+          <div className="flex items-center gap-1 mb-1">
+            <p className="text-xs tracking-widest text-muted uppercase">{item.brand}</p>
+            {user && onToggleBrandFavorite && (
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  onToggleBrandFavorite(item.brand)
+                }}
+                className={`text-xs leading-none transition-all ${
+                  isBrandFavorite
+                    ? 'text-yellow-400 opacity-100'
+                    : 'text-muted opacity-0 group-hover:opacity-100 hover:text-cream'
+                }`}
+                title={isBrandFavorite ? 'Remover marca dos favoritos' : 'Favoritar marca'}
+              >
+                {isBrandFavorite ? '★' : '☆'}
+              </button>
+            )}
+          </div>
           <p className="text-sm text-cream leading-snug mb-3 line-clamp-2">{item.name}</p>
           <p className="font-display text-lg tracking-wider text-cream">{price}</p>
           {item.category && (

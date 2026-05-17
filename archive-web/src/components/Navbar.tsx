@@ -47,6 +47,17 @@ export default function Navbar() {
             </Link>
           )}
 
+          {user && (
+            <Link
+              to="/marcas"
+              className={`text-xs tracking-widest uppercase transition-colors ${
+                isActive('/marcas') ? 'text-cream' : 'text-muted hover:text-cream'
+              }`}
+            >
+              Marcas
+            </Link>
+          )}
+
           {user ? (
             <div className="flex items-center gap-5">
               <NotificationBell />

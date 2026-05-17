@@ -1,6 +1,7 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { items, wishlist } from '../api/client'
+import { items, wishlist, favoriteBrands } from '../api/client'
 import type { FashionItemResponse, PagedResult, WishlistEntryResponse } from '../types'
 import ItemCard from '../components/ItemCard'
 import { useAuth } from '../context/AuthContext'
@@ -8,12 +9,22 @@ import { useAuth } from '../context/AuthContext'
 export default function HomePage() {
   const { user } = useAuth()
   const qc = useQueryClient()
+  const [searchParams] = useSearchParams()
+
+  const initialBrand = searchParams.get('brand') ?? ''
 
   const [query, setQuery] = useState('')
-  const [brand, setBrand] = useState('')
+  const [brand, setBrand] = useState(initialBrand)
   const [category, setCategory] = useState('')
   const [page, setPage] = useState(1)
-  const [applied, setApplied] = useState({ query: '', brand: '', category: '' })
+  const [applied, setApplied] = useState({ query: '', brand: initialBrand, category: '' })
+
+  useEffect(() => {
+    const b = searchParams.get('brand') ?? ''
+    setBrand(b)
+    setApplied({ query: '', brand: b, category: '' })
+    setPage(1)
+  }, [searchParams])
 
   const [imageResults, setImageResults] = useState<FashionItemResponse[] | null>(null)
   const [imageLoading, setImageLoading] = useState(false)
@@ -37,6 +48,35 @@ export default function HomePage() {
     queryFn: () => wishlist.getAll() as Promise<WishlistEntryResponse[]>,
     enabled: !!user,
   })
+
+  const { data: favBrandsData } = useQuery<string[]>({
+    queryKey: ['favorite-brands'],
+    queryFn: () => favoriteBrands.getAll(),
+    enabled: !!user,
+  })
+
+  const favBrandsSet = new Set((favBrandsData ?? []).map((b) => b.toLowerCase()))
+
+  const addBrandMutation = useMutation({
+    mutationFn: (brand: string) => favoriteBrands.add(brand),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['favorite-brands'] }),
+  })
+
+  const removeBrandMutation = useMutation({
+    mutationFn: (brand: string) => favoriteBrands.remove(brand),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['favorite-brands'] }),
+  })
+
+  const handleToggleBrand = useCallback(
+    (brand: string) => {
+      if (favBrandsSet.has(brand.toLowerCase())) {
+        removeBrandMutation.mutate(brand)
+      } else {
+        addBrandMutation.mutate(brand)
+      }
+    },
+    [favBrandsSet, addBrandMutation, removeBrandMutation],
+  )
 
   const wishlistIds = new Set(wishlistData?.map((w) => w.fashionItemId) ?? [])
   const wishlistEntryMap = Object.fromEntries(
@@ -193,6 +233,8 @@ export default function HomePage() {
                 item={item}
                 inWishlist={wishlistIds.has(item.id)}
                 onToggleWishlist={user ? handleToggleWishlist : undefined}
+                isBrandFavorite={favBrandsSet.has(item.brand?.toLowerCase())}
+                onToggleBrandFavorite={user ? handleToggleBrand : undefined}
               />
             ))}
           </div>
@@ -224,6 +266,8 @@ export default function HomePage() {
                 item={item}
                 inWishlist={wishlistIds.has(item.id)}
                 onToggleWishlist={user ? handleToggleWishlist : undefined}
+                isBrandFavorite={favBrandsSet.has(item.brand?.toLowerCase())}
+                onToggleBrandFavorite={user ? handleToggleBrand : undefined}
               />
             ))}
           </div>

@@ -172,8 +172,6 @@ export default function ItemDetailPage() {
             )}
           </div>
 
-          {seasonalInsight && <SeasonalInsightCard insight={seasonalInsight} />}
-
           {/* Min / Max */}
           {prices.length > 1 && (
             <div className="flex gap-10 pb-8 mb-8 border-b border-border">
@@ -311,6 +309,8 @@ export default function ItemDetailPage() {
           )}
         </div>
       </div>
+
+      {seasonalInsight && <SeasonalInsightCard insight={seasonalInsight} />}
     </main>
   )
 }

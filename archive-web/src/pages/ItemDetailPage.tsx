@@ -112,9 +112,13 @@ export default function ItemDetailPage() {
   const prices = history?.map((h) => h.price) ?? []
   const minPrice = prices.length ? Math.min(...prices) : item.currentPrice
   const maxPrice = prices.length ? Math.max(...prices) : item.currentPrice
+
+  const sortedHistory = history
+    ? [...history].sort((a, b) => new Date(b.recordedAt).getTime() - new Date(a.recordedAt).getTime())
+    : []
   const priceChange =
-    history && history.length >= 2
-      ? item.currentPrice - history[0].price
+    sortedHistory.length >= 2
+      ? item.currentPrice - sortedHistory[1].price
       : null
 
   return (
@@ -167,7 +171,7 @@ export default function ItemDetailPage() {
                 }`}
               >
                 {priceChange < 0 ? '↓' : priceChange > 0 ? '↑' : '='}{' '}
-                {fmt(Math.abs(priceChange), currency)} em relação ao primeiro registro
+                {fmt(Math.abs(priceChange), currency)} em relação ao registro anterior
               </p>
             )}
           </div>

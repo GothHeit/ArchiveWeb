@@ -25,3 +25,5 @@ catalog_embeddings.pt
 __pycache__/
 *.pyc
 runs/
+
+docs

@@ -60,13 +60,30 @@
         "FashionItemId": "11111111-1111-1111-1111-111111111111",
         "AddedAt": "2026-05-06T23:49:30.624262Z",
         "Note": null
+      },
+      {
+        "Id": "796dc8bb-97e7-4f81-b561-a2baa39b29f8",
+        "UserId": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
+        "FashionItemId": "a6465443-7743-4872-bffc-1109e33bb8b4",
+        "AddedAt": "2026-05-19T01:12:12.9938595Z",
+        "Note": null
       }
     ],
     "FavoriteBrands": [
       "SANDRO",
-      "Polo Ralph Lauren"
+      "Polo Ralph Lauren",
+      "Dr. Martens",
+      "Moon Boot"
     ],
-    "PriceAlerts": []
+    "PriceAlerts": [
+      {
+        "Id": "526e60ee-0f46-496d-8f3b-78d24c7a6db5",
+        "UserId": "8f6f3465-6315-4f7a-98ef-1aa3515c7e54",
+        "FashionItemId": "a6465443-7743-4872-bffc-1109e33bb8b4",
+        "TargetPrice": 2700,
+        "CreatedAt": "2026-05-19T01:09:00.6126721Z"
+      }
+    ]
   },
   {
     "Id": "41e69562-a71e-470c-9ba2-c21fa2468631",
